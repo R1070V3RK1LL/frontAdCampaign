@@ -1,0 +1,29 @@
+[
+    {
+      "id": 1,
+      "name": "Fromage Râpé Emmental Fondant CARREFOUR CLASSIC",
+      "description": "le sachet de 200g",
+      "price": 1.39,
+      "brand": "Carrefour",
+      "img": "https://media.carrefour.fr/medias/be214d709b8f3abc8dd098f7b2dd49fe/p_200x200/3270190207696-photosite-20201202-174734-0.jpg",
+      "category": "Food"
+    },
+    {
+      "id": 2,
+      "name": "Essuie-tout Maxi Roll CARREFOUR",
+      "description": "le rouleau de 450 feuilles",
+      "price": 3.99,
+      "brand": "Carrefour",
+      "img": "https://media.carrefour.fr/medias/b4451d3380c03c6cb5777f1e7da31679/p_540x540/3560070269891-photosite-20170421-161224-0.jpg",
+      "category": "Utilities"
+    },
+    {
+      "id": 3,
+      "name": "Rocher gaufrettes chocolat lait et noisettes FERRERO",
+      "description": "la boite de 375g",
+      "price": 7.05,
+      "brand": "Ferrero",
+      "img": "https://www.carrefour.fr/media/540x540/Photosite/PGC/EPICERIE/8000500167113_PHOTOSITE_20220101_075148_0.jpg?placeholder=1",
+      "category": "Food"
+    }
+]

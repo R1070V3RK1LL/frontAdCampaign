@@ -1,0 +1,25 @@
+<h2>Products</h2>
+<div class="row"  >
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Brand</th>
+      <th>Price</th>
+      <th>Buy</th>
+
+    </tr>
+    </thead>
+    <tbody  >
+    <tr *ngFor="let product of products">
+      <td><img alt="" src="{{product.img}}" style="width: 70px; height: 80px"></td>
+      <td>{{product.name}}</td>
+      <td>{{product.brand}}</td>
+      <td>{{product.price+"€" }}</td>
+      <td><button class="btn btn-success" (click)="addToCart(product)">Add to cart</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
