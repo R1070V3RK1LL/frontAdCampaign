@@ -3,6 +3,7 @@ import {appState} from "../store/app.state";
 import {Store} from "@ngrx/store";
 import { Product } from '../models/product.model'
 import {productInBasket} from "../models/basket.model";
+import {productInCampaign} from "../models/campaign.model";
 import {AddToBasket} from "../store/actions/product.actions";
 
 @Component({
@@ -21,7 +22,12 @@ export class productListComponent implements OnInit {
   ngOnInit(): void {
     this.products = Product.getProducts;
   }
+  addToCampaign(selectedProduct: Product) : void {
+    const newProductInCampaign={
+      product: selectedProduct
+    } as productInCampaign;
 
+  }
   addToCart(selectedProduct: Product) : void {
     const newProductInBasket = {
       product: selectedProduct
