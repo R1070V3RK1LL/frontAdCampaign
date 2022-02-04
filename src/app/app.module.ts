@@ -13,6 +13,7 @@ import { BasketComponent } from './basket/basket.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SearchComponent } from './search/search.component';
 import { CampaignComponent } from './campaign/campaign.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CampaignComponent } from './campaign/campaign.component';
     ContactComponent,
     SearchComponent,
     CampaignComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
