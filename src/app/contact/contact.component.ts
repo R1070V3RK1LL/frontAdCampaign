@@ -12,11 +12,11 @@ export class ContactComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   private email: string = "";
-  private message: string = "";
+  private password: string = "";
 
-  contactForm = this.formBuilder.group({
+  signinForm = this.formBuilder.group({
     email: this.email,
-    message:this.message
+    password:this.password,
   });
 
 
@@ -26,8 +26,8 @@ export class ContactComponent implements OnInit {
 
   submit() {
     window.alert(
-      this.contactForm.get('email')?.value + '\n' +
-      this.contactForm.get('message')?.value + '\n' + "Thank you for contacting us!"
+      this.signinForm.get('email')?.value + '\n' +
+      "Signed in"
     )
   }
 }
