@@ -1,0 +1,9 @@
+
+.searchbar input {
+    position:relative;
+    margin-right:10px;
+}
+.searchbar{
+    align-items:center;
+    margin-bottom:10px;
+}

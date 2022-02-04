@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { productListComponent } from './product-list/product-list.component';
 import { BasketComponent } from './basket/basket.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { SearchComponent } from './search/search.component';
 import { CampaignComponent } from './campaign/campaign.component';
 import { SignupComponent } from './signup/signup.component';
 
@@ -22,7 +21,6 @@ import { SignupComponent } from './signup/signup.component';
     BasketComponent,
     NavbarComponent,
     ContactComponent,
-    SearchComponent,
     CampaignComponent,
     SignupComponent,
   ],
