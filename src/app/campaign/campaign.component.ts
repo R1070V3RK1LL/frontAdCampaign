@@ -3,7 +3,6 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {Product} from "../models/product.model";
 import { CartService } from '../services/cart.service';
 import{HttpClient} from '@angular/common/http';
-import { ApiClient } from '../controllers/apiClient';
 import { CampaignController } from '../controllers/campaignController';
 @Component({
   selector: 'app-campaign',
@@ -14,13 +13,11 @@ export class CampaignComponent implements OnInit {
 
 
   productsInCampaign$: Observable<Product[]> | undefined;
-  private apiClient:ApiClient;
   private campaignController:CampaignController;
 
 	// I initialize the app-component.
-	constructor( apiClient: ApiClient, campaignController:CampaignController ) {
+	constructor(campaignController:CampaignController ) {
 
-		this.apiClient = apiClient;
     this.campaignController=campaignController;
 
 		// In order to demonstrate that Axios will engage the XSRF protection, let's

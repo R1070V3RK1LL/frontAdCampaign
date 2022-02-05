@@ -6,7 +6,7 @@ interface Product {
     budget: number;
 }
 
-export class productController {
+export class ProductsController {
 
     private products: Array<Product>;
     private apiClient: ApiClient;

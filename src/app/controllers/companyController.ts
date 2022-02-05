@@ -9,7 +9,6 @@ export class CompanyController {
 
     private companies: Array<Company>;
     private apiClient: ApiClient;
-    private Id:number=0;
 
     constructor( apiClient: ApiClient ) {
 

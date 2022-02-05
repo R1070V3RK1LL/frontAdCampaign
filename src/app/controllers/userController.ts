@@ -6,7 +6,7 @@ interface User {
     budget: number;
 }
 
-export class userController {
+export class UserController {
 
     private users: Array<User>;
     private apiClient: ApiClient;
