@@ -1,106 +1,88 @@
 import axios from 'axios';
-import { ApiClient } from './apiClient';
+import {HttpClient} from '@angular/common/http';
 interface Company {
     id: number;
     name: string;
 }
 
-export class CompanyController {
+export class companyController {
 
     private companies: Array<Company>;
-    private apiClient: ApiClient;
 
-    constructor( apiClient: ApiClient ) {
+    constructor(private  http: HttpClient ) {
 
-		this.apiClient = apiClient;
+		this.http= http;
 		this.companies = [];
 		document.cookie = "XSRF-TOKEN=server-generated-token";
 
 	}
     // list of companies.
-    public async loadCompanies(): Promise<void> {
+    public async loadCompanies(){
 
         try {
-            this.companies = await this.apiClient.get<Company[]>({
-                url: "http://localhost:8090/api/companies",
-                params: {
-                    limit: 10
-                }
-            });
+            return this.http.get<Company>('http://localhost:8090/api/companies');
 
         } catch (error) {
 
             console.error(error);
-
+            return;
         }
     }
 
-    // find company
-    public async findCompany(): Promise<void> {
+    // find company.
+    public async findcompany(id:number){
 
         try {
-            this.companies = await this.apiClient.get<Company[]>({
-                url: "http://localhost:8090/api/companies/{id}",
-                params: {
-                    limit: 10
-                }
-            });
+            return this.http.get<Company>(`http://localhost:8090/api/companies/${id}`);
 
         } catch (error) {
 
             console.error(error);
-
+            return;
         }
     }
-    // add company
-    public async addCompany(): Promise<void> {
+    // add company.
+    public async addCompany(name:string){
 
         try {
-            this.companies = await this.apiClient.post<Company[]>({
-                url: "http://localhost:8090/api/companies",
-                params: {
-                    limit: 10
-                }
-            });
+            var body={
+                name,
+            }
+            return this.http.post<Company>("http://localhost:8090/api/companies", body);
+
 
         } catch (error) {
 
             console.error(error);
-
+            return;
         }
     }
-    // update company
-    public async updateCompany(): Promise<void> {
+    // update company.
+    public async updateCompany(id:number,name:string){
 
         try {
-            this.companies = await this.apiClient.put<Company[]>({
-                url: "http://localhost:8090/api/companies/{id}",
-                params: {
-                    limit: 10
-                }
-            });
+            var body={
+                name,
+            }
+            return this.http.put<Company>(`http://localhost:8090/api/companies/${id}`, body);
+
 
         } catch (error) {
 
             console.error(error);
-
+            return;
         }
     }
     // delete company.
-    public async deleteCompany(): Promise<void> {
+    public async deleteCompany(id:number){
 
-        try {
-            this.companies = await this.apiClient.delete<Company[]>({
-                url: "http://localhost:8090/api/companies/{id}",
-                params: {
-                    limit: 10
-                }
-            });
+            try {
+                return this.http.delete<Company>(`http://localhost:8090/api/companies/${id}`);
 
-        } catch (error) {
+            } catch (error) {
 
-            console.error(error);
-
+                console.error(error);
+                return;
+            }
         }
-    }
 }

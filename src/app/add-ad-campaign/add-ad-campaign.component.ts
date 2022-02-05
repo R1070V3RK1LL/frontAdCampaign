@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { CampaignController } from '../controllers/campaignController';
 
 @Component({
   selector: 'app-add-ad-campaign',
@@ -8,17 +9,17 @@ import { FormBuilder } from '@angular/forms';
 })
 export class AddAdCampaignComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private campaignController:CampaignController) { this.campaignController=campaignController}
   private name: string = "";
-  private description: string = "";
+  private startingDate: string = "";
   private budget: number=0.0;
-  private ending_date:Date=new Date(0);
+  private endingDate:string="";
 
   addAdForm = this.formBuilder.group({
     name: this.name,
     budget:this.budget,
-    description:this.description,
-    ending_date:this.ending_date,
+    startingDate:this.startingDate,
+    endingDate:this.endingDate,
   });
 
 
@@ -27,8 +28,13 @@ export class AddAdCampaignComponent implements OnInit {
   }
 
   submit() {
+    var name=this.addAdForm.get('name')?.value;
+    var budget=this.addAdForm.get('budget')?.value;
+    var startingDate=this.addAdForm.get('startingDate')?.value;
+    var endingDate=this.addAdForm.get('endingDate')?.value;
+    this.campaignController.addCampaign(name,budget,startingDate,endingDate)
     window.alert(
-      this.addAdForm.get('name')?.value + '\n' +
+      name + '\n' +
       "Campaign added"
     )
   }

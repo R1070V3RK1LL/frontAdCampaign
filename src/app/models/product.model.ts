@@ -7,7 +7,10 @@ export class Product {
   price: number
   brand: string
   img: string
-  category: string
+  quantity: number
+  nbClicks:number
+  nbViews:number
+  nbSales:number
 
   constructor() {
     this.id = 0;
@@ -16,7 +19,10 @@ export class Product {
     this.price = 0
     this.brand = ''
     this.img = ''
-    this.category = ''
+    this.quantity=0
+    this.nbSales=0
+    this.nbClicks=0
+    this.nbViews=0
   }
 
   static get getProducts(): Product[] {

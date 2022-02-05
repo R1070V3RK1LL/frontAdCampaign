@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder} from '@angular/forms';
+import { CampaignController } from '../controllers/campaignController';
 
 @Component({
   selector: 'app-modify-ad',
@@ -8,17 +9,17 @@ import { FormBuilder} from '@angular/forms';
 })
 export class ModifyAdComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private campaignController:CampaignController) { this.campaignController=campaignController;}
+  private id:number=0;
   private name: string = "";
-  private description: string = "";
   private budget: number=0.0;
-  private ending_date:Date=new Date(0);
+  private endingDate:string="";
 
   modifyAdForm = this.formBuilder.group({
+    id:this.id,
     name: this.name,
     budget:this.budget,
-    description:this.description,
-    ending_date:this.ending_date,
+    endingDate:this.endingDate,
   });
 
 
@@ -27,8 +28,13 @@ export class ModifyAdComponent implements OnInit {
   }
 
   submit() {
+    var id=this.modifyAdForm.get('id')?.value;
+    var name=this.modifyAdForm.get('name')?.value;
+    var budget=this.modifyAdForm.get('budget')?.value;
+    var endingDate=this.modifyAdForm.get('endingDate')?.value;
+    this.campaignController.updateCampaign(id,name,budget,endingDate)
     window.alert(
-      this.modifyAdForm.get('name')?.value + '\n' +
+      name + '\n' +
       "Campaign updated"
     )
   }

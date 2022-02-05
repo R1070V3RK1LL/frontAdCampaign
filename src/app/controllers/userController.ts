@@ -1,108 +1,117 @@
 import axios from 'axios';
-import { ApiClient } from './apiClient';
+import {HttpClient} from '@angular/common/http';
 interface User {
-    id: number;
-    name: string;
-    budget: number;
+    id: number
+    firstName: string
+    lastName: string
+    email: string
+    password: string
+    birthday: string
+    subscriptionDate: string
 }
 
-export class UserController {
+export class userController {
 
     private users: Array<User>;
-    private apiClient: ApiClient;
 
-    constructor( apiClient: ApiClient ) {
+    constructor(private  http: HttpClient ) {
 
-		this.apiClient = apiClient;
+		this.http= http;
 		this.users = [];
 		document.cookie = "XSRF-TOKEN=server-generated-token";
 
 	}
-    // list of users
-    public async loadUsers(): Promise<void> {
+    // list of users.
+    public async loadUsers(){
 
         try {
-            this.users = await this.apiClient.get<User[]>({
-                url: "http://localhost:8090/api/users",
-                params: {
-                    limit: 10
-                }
-            });
+            return this.http.get<User>('http://localhost:8090/api/users');
 
         } catch (error) {
 
             console.error(error);
-
+            return;
         }
     }
 
-
     // find user.
-    public async findUserInCompany(): Promise<void> {
+    public async finduserInCompany(id:number){
 
         try {
-            this.users = await this.apiClient.get<User[]>({
-                url: "http://localhost:8090/api/users/{id}",
-                params: {
-                    limit: 10
-                }
-            });
+            return this.http.get<User>(`http://localhost:8090/api/users/${id}`);
 
         } catch (error) {
 
             console.error(error);
-
+            return;
         }
     }
     // add user.
-    public async addUser(): Promise<void> {
+    public async addUser(
+        firstName: string,
+        lastName: string,
+        email: string,
+        password: string,
+        birthday: string,
+        subscriptionDate: string){
 
         try {
-            this.users = await this.apiClient.post<User[]>({
-                url: "http://localhost:8090/api/users",
-                params: {
-                    limit: 10
-                }
-            });
+            var body={
+                firstName,
+                lastName,
+                email,
+                password,
+                birthday,
+                subscriptionDate
+            }
+            return this.http.post<User>("http://localhost:8090/api/users", body);
+
 
         } catch (error) {
 
             console.error(error);
-
+            return;
         }
     }
     // update user.
-    public async updateUser(): Promise<void> {
+    public async updateuser(  id: number,
+        firstName: string,
+        lastName: string,
+        email: string,
+        password: string,
+        birthday: string,
+        subscriptionDate: string){
 
         try {
-            this.users = await this.apiClient.put<User[]>({
-                url: "http://localhost:8090/api/users{id}",
-                params: {
-                    limit: 10
-                }
-            });
+            var body={
+                firstName,
+                lastName,
+                email,
+                password,
+                birthday,
+                subscriptionDate
+            }
+            return this.http.put<User>(`http://localhost:8090/api/users/${id}`, body);
+
+
 
         } catch (error) {
-
             console.error(error);
+            return;
 
         }
     }
     // delete user.
-    public async deleteUser(): Promise<void> {
+    public async deleteUser(id:number){
 
-        try {
-            this.users = await this.apiClient.delete<User[]>({
-                url: "http://localhost:8090/api/users{id}",
-                params: {
-                    limit: 10
-                }
-            });
+            try {
+                return this.http.delete<User>(`http://localhost:8090/api/users/${id}`);
 
-        } catch (error) {
+            } catch (error) {
 
-            console.error(error);
+                console.error(error);
+                return;
 
+            }
         }
-    }
 }

@@ -4,7 +4,7 @@ import {Store} from "@ngrx/store";
 import { Product } from '../models/product.model'
 import {productInBasket} from "../models/basket.model";
 import {AddToBasket} from "../store/actions/product.actions";
-import { ProductsController } from '../controllers/productsController';
+import { ProductController } from '../controllers/productsController';
 
 @Component({
   selector: 'app-product-list',
@@ -14,24 +14,22 @@ import { ProductsController } from '../controllers/productsController';
 export class productListComponent implements OnInit {
 
   products: Product[]= [];
-  private productsController:ProductsController;
+  private productController:ProductController;
 
 	// I initialize the app-component.
 	constructor( //private store: Store<appState>,
-    productsController:ProductsController
+    productController:ProductController
     ) {
-
-    this.productsController=productsController;
-		document.cookie = "XSRF-TOKEN=server-generated-token";
+      this.productController=productController;
 	}
 
 
   ngOnInit(): void {
     //this.products = Product.getProducts;
-    this.productsController.loadProducts();
+    this.productController.loadProducts();
   }
   addToCampaign(selectedProduct: Product) : void {
-    this.productsController.addProduct();
+    this.productController.addProduct(selectedProduct.name,selectedProduct.description,selectedProduct.price,selectedProduct.brand,selectedProduct.img,selectedProduct.quantity);
 
   }
   /*

@@ -4,12 +4,16 @@ export class Campaign {
   name: string;
   description: string;
   budget: number;
-  ending_date:Date;
+  startingDate:string;
+  endingDate:string;
+  products:Product[];
 
   constructor() {
     this.name = '';
     this.description = '';
     this.budget=0.0;
-    this.ending_date=new Date(0);
+    this.endingDate="";
+    this.startingDate="";
+    this.products=[];
   }
 }
