@@ -14,12 +14,27 @@ export class CampaignComponent implements OnInit {
 
 
   productsInCampaign$: Observable<Product[]> | undefined;
+  private apiClient:ApiClient;
   private campaignController:CampaignController;
+
+	// I initialize the app-component.
+	constructor( apiClient: ApiClient, campaignController:CampaignController ) {
+
+		this.apiClient = apiClient;
+    this.campaignController=campaignController;
+
+		// In order to demonstrate that Axios will engage the XSRF protection, let's
+		// set an XSRF-TOKEN cookie.
+		// --
+		// NOTE: This would normally be some unpredictable value set by the server.
+		document.cookie = "XSRF-TOKEN=server-generated-token";
+
+	}
 
   ngOnInit(): void {
     this.campaignController.loadCampaigns();
   }
-  constructor(private cartService: CartService) { }
+  //constructor(private cartService: CartService) { }
   //shippingPrices=this.cartService.getShippingPrices();
   //shippingNames=this.cartService.getShippingNames();
   //shippingBrands=this.cartService.getShippingBrands();
