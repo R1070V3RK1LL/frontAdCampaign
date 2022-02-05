@@ -3,7 +3,6 @@ import {appState} from "../store/app.state";
 import {Store} from "@ngrx/store";
 import { Product } from '../models/product.model'
 import {productInBasket} from "../models/basket.model";
-import {productInCampaign} from "../models/campaign.model";
 import {AddToBasket} from "../store/actions/product.actions";
 import { ProductsController } from '../controllers/productsController';
 

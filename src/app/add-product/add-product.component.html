@@ -1,0 +1,27 @@
+<form [formGroup]="addProductForm" (ngSubmit)="submit()">
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="name" formControlName="name" class="form-control" placeholder="Enter the name of the product"
+      id="firstname" required>
+  </div>
+  <div class="form-group">
+    <label for="price">Price</label>
+    <input type="number" formControlName="price" class="form-control" placeholder="Enter the price of the product"
+      id="price" required>
+  </div>
+  <div class="form-group">
+    <label for="quantity">Quantity</label>
+    <input type="number" formControlName="quantity" class="form-control" placeholder="Enter the quantity of the product"
+      id="quantity" required>
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input type="description" formControlName="description" class="form-control" placeholder="Describe the product"
+      id="description" required>
+  </div>
+
+  <button type="cancel" class="btn btn-primary">Cancel</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>

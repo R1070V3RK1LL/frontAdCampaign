@@ -1,0 +1,27 @@
+<form [formGroup]="addAdForm" (ngSubmit)="submit()">
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="name" formControlName="name" class="form-control" placeholder="Enter the name of the campaign"
+        id="firstname" required>
+    </div>
+    <div class="form-group">
+      <label for="Budget">Budget</label>
+      <input type="number" formControlName="budget" class="form-control" placeholder="Enter the budget of the campaign" id="budget"
+        required>
+    </div>
+    <div class="form-group">
+      <label for="ending_date">Closing date</label>
+      <input type="date" formControlName="ending_date" class="form-control" placeholder="Enter the closing date of the campaign" id="ending_date" required>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="description" formControlName="description" class="form-control" placeholder="Describe the campaign"
+        id="description" required>
+    </div>
+
+    <button type="cancel" class="btn btn-primary">Cancel</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+  </form>

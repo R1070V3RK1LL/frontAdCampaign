@@ -6,13 +6,19 @@ import { ActionReducerMap, StoreModule} from "@ngrx/store";
 import {ProductReducer} from "./store/reducers/product.reducer";
 import {HttpClientModule} from '@angular/common/http';
 
-import { ContactComponent } from "./contact/contact.component";
 import { AppComponent } from './app.component';
 import { productListComponent } from './product-list/product-list.component';
 import { BasketComponent } from './basket/basket.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CampaignComponent } from './campaign/campaign.component';
 import { SignupComponent } from './signup/signup.component';
+import { ContactComponent } from './contact/contact.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { AddAdCampaignComponent } from './add-ad-campaign/add-ad-campaign.component';
+import { ModifyAdComponent } from './modify-ad/modify-ad.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+
 
 @NgModule({
   declarations: [
@@ -20,9 +26,14 @@ import { SignupComponent } from './signup/signup.component';
     productListComponent,
     BasketComponent,
     NavbarComponent,
-    ContactComponent,
     CampaignComponent,
     SignupComponent,
+    ContactComponent,
+    ModifyAdComponent,
+    AddProductComponent,
+    AddAdCampaignComponent,
+    LoginPageComponent,
+    AdminPageComponent,
   ],
   imports: [
     BrowserModule,
