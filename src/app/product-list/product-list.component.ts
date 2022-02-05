@@ -18,28 +18,24 @@ export class productListComponent implements OnInit {
   private productsController:ProductsController;
 
 	// I initialize the app-component.
-	constructor( private store: Store<appState>, productsController:ProductsController ) {
+	constructor( //private store: Store<appState>,
+    productsController:ProductsController
+    ) {
 
     this.productsController=productsController;
-
-		// In order to demonstrate that Axios will engage the XSRF protection, let's
-		// set an XSRF-TOKEN cookie.
-		// --
-		// NOTE: This would normally be some unpredictable value set by the server.
 		document.cookie = "XSRF-TOKEN=server-generated-token";
 	}
 
 
   ngOnInit(): void {
-    this.products = Product.getProducts;
+    //this.products = Product.getProducts;
     this.productsController.loadProducts();
   }
   addToCampaign(selectedProduct: Product) : void {
-    const newProductInCampaign={
-      product: selectedProduct
-    } as productInCampaign;
+    this.productsController.addProduct();
 
   }
+  /*
   addToCart(selectedProduct: Product) : void {
     const newProductInBasket = {
       product: selectedProduct
@@ -48,4 +44,5 @@ export class productListComponent implements OnInit {
     this.store.dispatch(new AddToBasket(newProductInBasket))
     console.log(newProductInBasket)
   }
+  */
 }
