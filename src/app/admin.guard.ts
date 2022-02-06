@@ -8,7 +8,7 @@ import { TokenStorageService } from './services/token-storage.service';
 export class AdminGuard implements CanActivate {
     constructor(private router: Router, private tokenStorage:TokenStorageService) { }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        if (this.isLoggedIn() && this.isAdmin()) {
+        if (this.isLoggedIn()) {
             return true;
         }
         // navigate to login page as user is not authenticated
@@ -27,7 +27,7 @@ export class AdminGuard implements CanActivate {
     }
     public isAdmin(): boolean {
         let status = false;
-        console.log(this.tokenStorage.getUser().roles=='admin');
+        console.log(this.tokenStorage.getUser());
         if (this.tokenStorage.getUser().roles=='admin') {
             status = true;
         }

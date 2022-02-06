@@ -26,7 +26,13 @@ export class productListComponent implements OnInit {
 
   ngOnInit(): void {
     //this.products = Product.getProducts;
-    this.productController.loadProducts();
+    this.productController.loadProducts().subscribe(
+      (response) => {                           
+        console.log('response received', response)
+      },
+      (error) => {                             
+        console.error('Request failed with error', error)
+      });
   }
   addToCampaign(selectedProduct: Product) : void {
     console.log({selectedProduct})

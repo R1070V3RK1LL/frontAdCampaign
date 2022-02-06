@@ -15,7 +15,6 @@ export class SigninComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router,
     private authService: AuthService,private tokenStorage: TokenStorageService) { }
 
-  model: ILogin = { email: "teo99@live.fr", password: "admin@123" }
 
   private email: string = "";
   private password: string = "";
@@ -39,7 +38,7 @@ export class SigninComponent implements OnInit {
       password: this.password,
     });
     this.returnUrl = '/store';
-    this.tokenStorage.signOut();
+    //this.tokenStorage.signOut();
   }
 
   submit() {
@@ -52,8 +51,9 @@ export class SigninComponent implements OnInit {
       var password=this.signinForm.get('password')?.value;
       this.authService.login(email, password).subscribe(
         data => {
+          console.log({data})
           this.tokenStorage.saveToken(data.accessToken);
-          this.tokenStorage.saveUser(data);
+          this.tokenStorage.saveUser({id:data.id, username:data.username, email:data.email, roles:data.roles});
 
           this.isLoginFailed = false;
           this.isLoggedIn = true;

@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: 'modifyAdCampaign', component:ModifyAdComponent,canActivate : [AdminGuard]},
   {path: 'signin', component:SigninComponent},
   {path: 'signup', component:SignupComponent},
-  { path: '',redirectTo:'/signin',pathMatch: 'full'},
+  { path: '',redirectTo:'/store',pathMatch: 'full'},
 ]
 
 @NgModule({

@@ -11,6 +11,8 @@
       <li class="nav-item"><a routerLink="/addProduct" class="nav-link"  *ngIf="isAdmin$"  routerLinkActive="active" visibility="hidden">Add product</a></li>
       <li class="nav-item"><a routerLink="/addAdCampaign" class="nav-link" *ngIf="isAdmin$" routerLinkActive="active">Add ad campaign</a></li>
       <li class="nav-item"><a routerLink="/modifyAdCampaign" class="nav-link" *ngIf="isAdmin$" routerLinkActive="active">Modify ad campaign</a></li>
-    </ul>
+      <li class="nav-item">
+        <a href routerLink="/signin" class="nav-link" (click)="onLogout()">LogOut</a>
+      </li>    </ul>
   </header>
 </div>

@@ -22,5 +22,6 @@ export class NavbarComponent implements OnInit {
 
     onLogout(){
       this.tokenStorageService.signOut();
+      localStorage.setItem('isLoggedIn', "false");
   }
 }
