@@ -1,19 +1,15 @@
 import axios from 'axios';
 import {HttpClient} from '@angular/common/http';
+import {Injectable}from '@angular/core';
 interface Company {
     id: number;
     name: string;
 }
-
+@Injectable()
 export class companyController {
 
-    private companies: Array<Company>;
 
     constructor(private  http: HttpClient ) {
-
-		this.http= http;
-		this.companies = [];
-		document.cookie = "XSRF-TOKEN=server-generated-token";
 
 	}
     // list of companies.

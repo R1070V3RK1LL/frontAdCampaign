@@ -9,7 +9,7 @@ import { CampaignController } from '../controllers/campaignController';
 })
 export class ModifyAdComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private campaignController:CampaignController) { this.campaignController=campaignController;}
+  constructor(private formBuilder: FormBuilder) { }
   private id:number=0;
   private name: string = "";
   private budget: number=0.0;
@@ -26,16 +26,22 @@ export class ModifyAdComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  campaignController: CampaignController| undefined;
   submit() {
+
     var id=this.modifyAdForm.get('id')?.value;
     var name=this.modifyAdForm.get('name')?.value;
     var budget=this.modifyAdForm.get('budget')?.value;
     var endingDate=this.modifyAdForm.get('endingDate')?.value;
-    this.campaignController.updateCampaign(id,name,budget,endingDate)
+    if(!this.campaignController){
+      return null;
+    }
+    else{
     window.alert(
       name + '\n' +
       "Campaign updated"
     )
+    return this.campaignController.updateCampaign(id,name,budget,endingDate);
+    }
   }
 }

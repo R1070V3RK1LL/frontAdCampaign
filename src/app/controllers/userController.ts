@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {HttpClient} from '@angular/common/http';
+import {Injectable}from '@angular/core';
 interface User {
     id: number
     firstName: string
@@ -9,17 +10,10 @@ interface User {
     birthday: string
     subscriptionDate: string
 }
-
+@Injectable()
 export class userController {
 
-    private users: Array<User>;
-
     constructor(private  http: HttpClient ) {
-
-		this.http= http;
-		this.users = [];
-		document.cookie = "XSRF-TOKEN=server-generated-token";
-
 	}
     // list of users.
     public async loadUsers(){

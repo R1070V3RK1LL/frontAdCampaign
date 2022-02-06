@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {HttpClient} from '@angular/common/http';
+import {Injectable}from '@angular/core';
 interface Campaign {
     id: number;
     name: string;
@@ -8,15 +9,9 @@ interface Campaign {
     endingDate:string;
 }
 
+@Injectable()
 export class CampaignController {
-
-    private campaigns: Array<Campaign>;
-
     constructor(private  http: HttpClient ) {
-
-		this.http= http;
-		this.campaigns = [];
-		document.cookie = "XSRF-TOKEN=server-generated-token";
 
 	}
     // list of campaigns.
@@ -45,7 +40,7 @@ export class CampaignController {
         }
     }
     // add campaign.
-    public async addCampaign(name:string,budget:number, startingDate:string,endingDate:string){
+    public async addCampaign(name:string,budget:number,startingDate:string, endingDate:string){
 
         try {
             var body={

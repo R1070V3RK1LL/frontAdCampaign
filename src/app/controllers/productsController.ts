@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {HttpClient} from '@angular/common/http';
+import {Injectable}from '@angular/core';
 interface Product {
     id: number
     name: string
@@ -13,16 +14,10 @@ interface Product {
     nbSales:number
 }
 
+@Injectable()
 export class ProductController {
 
-    private products: Array<Product>;
-
     constructor(private  http: HttpClient ) {
-
-		this.http= http;
-		this.products = [];
-		document.cookie = "XSRF-TOKEN=server-generated-token";
-
 	}
     // list of products.
     public async loadProducts(){
@@ -52,7 +47,6 @@ export class ProductController {
     // add product.
     public async addProduct(
         name: string,
-        description: string,
         price: number,
         brand: string,
         img: string,
@@ -62,7 +56,6 @@ export class ProductController {
         try {
             var body={
                 name,
-                description,
                 price,
                 brand,
                 img,
@@ -80,7 +73,6 @@ export class ProductController {
     // update product.
     public async updateProduct(id:number,
         name: string,
-        description: string,
         price: number,
         brand: string,
         img: string,
@@ -90,7 +82,6 @@ export class ProductController {
         try {
             var body={
                 name,
-                description,
                 price,
                 brand,
                 img,

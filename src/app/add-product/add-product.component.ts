@@ -11,11 +11,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-  private productController: ProductController;
 
-  constructor(private formBuilder: FormBuilder, productController: ProductController) { this.productController = productController; }
+  constructor(private formBuilder: FormBuilder, private productController: ProductController) { }
   private name: string = "";
-  private description: string = "";
   private price: number = 0.0;
   private image: string = "";
   private brand: string = "";
@@ -29,7 +27,6 @@ export class AddProductComponent implements OnInit {
     image: this.image,
     brand: this.brand,
     quantity: this.quantity,
-    description: this.description,
     product: this.product,
     adcampaign: this.adcampaign,
   });
@@ -44,10 +41,10 @@ export class AddProductComponent implements OnInit {
     var name = this.addProductForm.get('name')?.value;
     var price = this.addProductForm.get('price')?.value;
     var quantity = this.addProductForm.get('quantity')?.value;
-    var description = this.addProductForm.get('description')?.value;
+
     var image = this.addProductForm.get('image')?.value;
     var brand = this.addProductForm.get('brand')?.value;
-    this.productController.addProduct(name, description, price, brand, image, quantity)
+    this.productController.addProduct(name, price, brand, image, quantity)
     window.alert(
       name + '\n' +
       "Product added"

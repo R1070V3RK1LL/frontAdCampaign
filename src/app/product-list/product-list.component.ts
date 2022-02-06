@@ -29,7 +29,7 @@ export class productListComponent implements OnInit {
     this.productController.loadProducts();
   }
   addToCampaign(selectedProduct: Product) : void {
-    this.productController.addProduct(selectedProduct.name,selectedProduct.description,selectedProduct.price,selectedProduct.brand,selectedProduct.img,selectedProduct.quantity);
+    this.productController.addProduct(selectedProduct.name,selectedProduct.price,selectedProduct.brand,selectedProduct.img,selectedProduct.quantity);
 
   }
   /*
