@@ -5,6 +5,7 @@ import { Product } from '../models/product.model'
 import {productInBasket} from "../models/basket.model";
 import {AddToBasket} from "../store/actions/product.actions";
 import { ProductController } from '../controllers/productsController';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-product-list',
@@ -14,25 +15,27 @@ import { ProductController } from '../controllers/productsController';
 export class productListComponent implements OnInit {
 
   products: Product[]= [];
-  private productController:ProductController;
-
+  public Form = this.formBuilder.group({});
+  private id:number=0;
 	// I initialize the app-component.
 	constructor( //private store: Store<appState>,
-    productController:ProductController
+    private formBuilder:FormBuilder,
+    private productController:ProductController
     ) {
       this.productController=productController;
+      this.Form=this.formBuilder.group({
+        id: this.id,
+      });
 	}
 
 
   ngOnInit(): void {
     //this.products = Product.getProducts;
-    this.productController.loadProducts().subscribe(
-      (response) => {                           
-        console.log('response received', response)
-      },
-      (error) => {                             
-        console.error('Request failed with error', error)
-      });
+    this.productController.loadProducts();
+  }
+  findProduct():void{
+    var id=this.Form.get('id')?.value;
+    this.productController.findProduct(id);
   }
   addToCampaign(selectedProduct: Product) : void {
     console.log({selectedProduct})
