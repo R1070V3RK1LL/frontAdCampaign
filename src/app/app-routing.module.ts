@@ -14,7 +14,6 @@ import {SignupComponent} from './signup/signup.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  { path: '',redirectTo:'/signin',pathMatch: 'full'},
   { path: 'store', component: productListComponent,canActivate : [AuthGuard] },
   { path: 'basket', component: BasketComponent,canActivate : [AuthGuard] },
   { path: 'campaign', component: CampaignComponent,canActivate : [AuthGuard] },
@@ -23,6 +22,7 @@ const routes: Routes = [
   {path: 'modifyAdCampaign', component:ModifyAdComponent,canActivate : [AuthGuard]},
   {path: 'signin', component:SigninComponent},
   {path: 'signup', component:SignupComponent},
+  { path: '',redirectTo:'/signin',pathMatch: 'full'},
 ]
 
 @NgModule({
