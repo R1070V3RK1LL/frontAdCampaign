@@ -9,47 +9,20 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { AddAdCampaignComponent } from './add-ad-campaign/add-ad-campaign.component';
 import { ModifyAdComponent } from './modify-ad/modify-ad.component';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { ContactComponent } from './contact/contact.component';
+import {SigninComponent } from './signin/signin.component';
 import {SignupComponent} from './signup/signup.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  { path: '', component: WelcomeComponent },
-  { path: 'store', component: productListComponent },
-  { path: 'basket', component: BasketComponent },
-  { path: 'campaign', component: CampaignComponent },
-  {path: 'addProduct', component:AddProductComponent},
-  {path: 'addAdCampaign', component:AddAdCampaignComponent},
-  {path: 'modifyAdCampaign', component:ModifyAdComponent},
-  {path: 'signin', component:ContactComponent},
-  {path: 'singup', component:SignupComponent},
-  {
-    path: 'adminPage', component: AdminPageComponent,
-    children: [
-      {
-        path: 'addProduct',
-        component: AddProductComponent
-      },
-      {
-        path: 'addAdCampaign',
-        component: AddAdCampaignComponent
-      },
-      {
-        path: 'modifyAdCampaign',
-        component: ModifyAdComponent
-      },
-    ]
-  },
-  { path: 'loginPage', component: LoginPageComponent,
-  children: [
-    {
-      path: 'signin',
-      component: ContactComponent
-    },
-    {
-      path: 'signup',
-      component: SignupComponent
-    }]
-  }
+  { path: '',redirectTo:'/signin',pathMatch: 'full'},
+  { path: 'store', component: productListComponent,canActivate : [AuthGuard] },
+  { path: 'basket', component: BasketComponent,canActivate : [AuthGuard] },
+  { path: 'campaign', component: CampaignComponent,canActivate : [AuthGuard] },
+  {path: 'addProduct', component:AddProductComponent,canActivate : [AuthGuard]},
+  {path: 'addAdCampaign', component:AddAdCampaignComponent,canActivate : [AuthGuard]},
+  {path: 'modifyAdCampaign', component:ModifyAdComponent,canActivate : [AuthGuard]},
+  {path: 'signin', component:SigninComponent},
+  {path: 'signup', component:SignupComponent},
 ]
 
 @NgModule({
