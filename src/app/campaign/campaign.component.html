@@ -4,12 +4,20 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Brand</th>
-        <th>Price</th>
+        <th>Budget</th>
+        <th>Starting Date</th>
+        <th>Ending Date</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
+      <tr *ngFor="let campaign of campaigns">
+        <td>{{campaign.name}}</td>
+        <td>{{campaign.budget}}</td>
+        <td>{{campaign.startingDate}}</td>
+        <td>{{campaign.endingDate}}</td>
+        <!-- <td><button class="btn btn-warning" (click)="removeBookFromBasket(book.id)">Remove</button></td> -->
+      </tr>
       <!--
       <tr *ngFor="let  shipping of shippingPrices|async">
         <td>{{shipping.price+'€'}}</td>

@@ -32,8 +32,17 @@ export class AddAdCampaignComponent implements OnInit {
       return date.toISOString().replace("T"," ").substring(0, 16);
     }
     var startingDate= generateDatabaseDateTime(new Date());
+    console.log(startingDate)
     var endingDate=this.addAdForm.get('endingDate')?.value;
-    return this.campaignController.addCampaign(name,budget,startingDate,endingDate)
+    endingDate = generateDatabaseDateTime(new Date(endingDate));
+    console.log({startingDate, endingDate})
+    return this.campaignController.addCampaign(name,budget,startingDate,endingDate).subscribe(
+      (response) => {                           
+        console.log('response received', response)
+      },
+      (error) => {                             
+        console.error('Request failed with error', error)
+      })
 
 }
 }
