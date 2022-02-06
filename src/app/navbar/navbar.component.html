@@ -1,18 +1,12 @@
-<div class="container">
-  <header class="d-flex justify-content-center py-3">
-    <ul class="nav nav-pills">
-      <li class="nav-item">
+<div class="container teal borderYtoX">
         <a routerLink="/" class="nav-link" aria-current="page" >
-          <img src="./pngwing.com.ico" alt="home">
+          <img src="../assets/logo.jpeg" alt="home">
         </a>
-      </li>
-      <li class="nav-item"><a routerLink="/store" class="nav-link" *ngIf="isLoggedIn$" routerLinkActive="active" >Product</a></li>
-      <li class="nav-item"><a routerLink="/campaign" class="nav-link" *ngIf="isLoggedIn$" routerLinkActive="active">Campaign</a></li>
-      <li class="nav-item"><a routerLink="/addProduct" class="nav-link"  *ngIf="isAdmin$"  routerLinkActive="active" visibility="hidden">Add product</a></li>
-      <li class="nav-item"><a routerLink="/addAdCampaign" class="nav-link" *ngIf="isAdmin$" routerLinkActive="active">Add ad campaign</a></li>
-      <li class="nav-item"><a routerLink="/modifyAdCampaign" class="nav-link" *ngIf="isAdmin$" routerLinkActive="active">Modify ad campaign</a></li>
-      <li class="nav-item">
-        <a href routerLink="/signin" class="nav-link" (click)="onLogout()">LogOut</a>
-      </li>    </ul>
-  </header>
+      <a routerLink="/store" class="nav-link" *ngIf="isLoggedIn$" routerLinkActive="active" >Product</a>
+      <a routerLink="/campaign" class="nav-link" *ngIf="isLoggedIn$" routerLinkActive="active">Campaign</a>
+      <a routerLink="/addProduct" class="nav-link"  *ngIf="isAdmin$"  routerLinkActive="active" >Add product</a>
+      <a routerLink="/addAdCampaign" class="nav-link" *ngIf="isAdmin$" routerLinkActive="active">Add ad campaign</a>
+      <a routerLink="/modifyAdCampaign" class="nav-link" *ngIf="isAdmin$" routerLinkActive="active">Modify ad campaign</a>
+      <a href routerLink="/signin" class="nav-link" (click)="onLogout()">LogOut</a>
 </div>
+
