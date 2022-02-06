@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {HttpClient} from '@angular/common/http';
 import {Injectable}from '@angular/core';
+import { Observable } from 'rxjs';
 interface User {
     id: number
     firstName: string
@@ -16,40 +17,29 @@ export class userController {
     constructor(private  http: HttpClient ) {
 	}
     // list of users.
-    public async loadUsers(){
+    public loadUsers() : Observable<any>{
 
-        try {
             return this.http.get<User>('http://localhost:8090/api/users');
 
-        } catch (error) {
 
-            console.error(error);
-            return;
-        }
     }
 
     // find user.
-    public async finduserInCompany(id:number){
+    public finduserInCompany(id:number): Observable<any>{
 
-        try {
             return this.http.get<User>(`http://localhost:8090/api/users/${id}`);
 
-        } catch (error) {
 
-            console.error(error);
-            return;
-        }
     }
     // add user.
-    public async addUser(
+    public  addUser(
         firstName: string,
         lastName: string,
         email: string,
         password: string,
         birthday: string,
-        subscriptionDate: string){
+        subscriptionDate: string): Observable<any>{
 
-        try {
             var body={
                 firstName,
                 lastName,
@@ -60,24 +50,18 @@ export class userController {
             }
             return this.http.post<User>("http://localhost:8090/api/users", body);
 
-
-        } catch (error) {
-
-            console.error(error);
-            return;
-        }
     }
     // update user.
-    public async updateuser(  id: number,
+    public  updateuser(  id: number,
         firstName: string,
         lastName: string,
         email: string,
         password: string,
         birthday: string,
-        subscriptionDate: string){
+        subscriptionDate: string) : Observable<any>{
 
-        try {
-            var body={
+ 
+            let body={
                 firstName,
                 lastName,
                 email,
@@ -87,25 +71,12 @@ export class userController {
             }
             return this.http.put<User>(`http://localhost:8090/api/users/${id}`, body);
 
-
-
-        } catch (error) {
-            console.error(error);
-            return;
-
-        }
     }
     // delete user.
-    public async deleteUser(id:number){
+    public  deleteUser(id:number) : Observable<any>{
 
-            try {
                 return this.http.delete<User>(`http://localhost:8090/api/users/${id}`);
 
-            } catch (error) {
-
-                console.error(error);
-                return;
-
-            }
+  
         }
 }

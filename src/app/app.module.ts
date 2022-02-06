@@ -18,6 +18,8 @@ import { AddAdCampaignComponent } from './add-ad-campaign/add-ad-campaign.compon
 import { ModifyAdComponent } from './modify-ad/modify-ad.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { CampaignController } from './controllers/campaignController';
+import { ProductController } from './controllers/productsController';
 
 
 @NgModule({
@@ -43,7 +45,7 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
     FormsModule,
     StoreModule.forRoot({product: ProductReducer} as ActionReducerMap<any,any> ),
   ],
-  providers: [],
+  providers: [CampaignController,ProductController],
   bootstrap: [AppComponent]
 })
 

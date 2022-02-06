@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {HttpClient} from '@angular/common/http';
 import {Injectable}from '@angular/core';
+import { Observable } from 'rxjs';
 interface Company {
     id: number;
     name: string;
@@ -13,72 +14,46 @@ export class companyController {
 
 	}
     // list of companies.
-    public async loadCompanies(){
+    public loadCompanies() : Observable<any>{
 
-        try {
+
             return this.http.get<Company>('http://localhost:8090/api/companies');
 
-        } catch (error) {
-
-            console.error(error);
-            return;
-        }
+ 
     }
 
     // find company.
-    public async findcompany(id:number){
+    public findcompany(id:number) : Observable<any>{
 
-        try {
+
             return this.http.get<Company>(`http://localhost:8090/api/companies/${id}`);
-
-        } catch (error) {
-
-            console.error(error);
-            return;
-        }
     }
     // add company.
-    public async addCompany(name:string){
+    public  addCompany(name:string) : Observable<any>{
 
-        try {
-            var body={
+
+            let body={
                 name,
             }
             return this.http.post<Company>("http://localhost:8090/api/companies", body);
 
 
-        } catch (error) {
-
-            console.error(error);
-            return;
-        }
     }
     // update company.
-    public async updateCompany(id:number,name:string){
+    public  updateCompany(id:number,name:string) : Observable<any>{
 
-        try {
             var body={
                 name,
             }
             return this.http.put<Company>(`http://localhost:8090/api/companies/${id}`, body);
 
 
-        } catch (error) {
-
-            console.error(error);
-            return;
-        }
     }
     // delete company.
-    public async deleteCompany(id:number){
+    public  deleteCompany(id:number) : Observable<any>{
 
-            try {
+
                 return this.http.delete<Company>(`http://localhost:8090/api/companies/${id}`);
 
-            } catch (error) {
-
-                console.error(error);
-                return;
-            }
         }
 }

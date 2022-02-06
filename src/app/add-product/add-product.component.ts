@@ -44,10 +44,14 @@ export class AddProductComponent implements OnInit {
 
     var image = this.addProductForm.get('image')?.value;
     var brand = this.addProductForm.get('brand')?.value;
-    this.productController.addProduct(name, price, brand, image, quantity)
-    window.alert(
-      name + '\n' +
-      "Product added"
-    )
+    console.log({name, price, brand, image, quantity})
+    this.productController.addProduct(name, price, brand, image, quantity).subscribe(
+      (response) => {                           
+        console.log('response received', response)
+      },
+      (error) => {                             
+        console.error('Request failed with error', error)
+      })
+  
   }
 }

@@ -9,7 +9,7 @@ import { CampaignController } from '../controllers/campaignController';
 })
 export class ModifyAdComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private campaignController:CampaignController) { }
   private id:number=0;
   private name: string = "";
   private budget: number=0.0;
@@ -26,7 +26,6 @@ export class ModifyAdComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  campaignController: CampaignController| undefined;
   submit() {
 
     var id=this.modifyAdForm.get('id')?.value;

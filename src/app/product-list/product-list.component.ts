@@ -29,6 +29,7 @@ export class productListComponent implements OnInit {
     this.productController.loadProducts();
   }
   addToCampaign(selectedProduct: Product) : void {
+    console.log({selectedProduct})
     this.productController.addProduct(selectedProduct.name,selectedProduct.price,selectedProduct.brand,selectedProduct.img,selectedProduct.quantity);
 
   }

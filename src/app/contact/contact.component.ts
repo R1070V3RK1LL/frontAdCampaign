@@ -25,9 +25,7 @@ export class ContactComponent implements OnInit {
   }
 
   submit() {
-    window.alert(
-      this.signinForm.get('email')?.value + '\n' +
-      "Signed in"
-    )
+    // TODO:
+    // Check the backend
   }
 }

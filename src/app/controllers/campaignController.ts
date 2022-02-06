@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {HttpClient} from '@angular/common/http';
 import {Injectable}from '@angular/core';
+import { Observable } from 'rxjs';
 interface Campaign {
     id: number;
     name: string;
@@ -15,34 +16,23 @@ export class CampaignController {
 
 	}
     // list of campaigns.
-    public async loadCampaigns(){
+    public  loadCampaigns() : Observable<any>{
 
-        try {
+
             return this.http.get<Campaign>('http://localhost:8090/api/campaigns');
 
-        } catch (error) {
-
-            console.error(error);
-            return;
-        }
     }
 
     // find campaign.
-    public async findCampaignForCompany(id:number){
+    public  findCampaignForCompany(id:number) : Observable<any>{
 
-        try {
             return this.http.get<Campaign>(`http://localhost:8090/api/campaigns/${id}`);
 
-        } catch (error) {
 
-            console.error(error);
-            return;
-        }
     }
     // add campaign.
-    public async addCampaign(name:string,budget:number,startingDate:string, endingDate:string){
+    public  addCampaign(name:string,budget:number,startingDate:string, endingDate:string) : Observable<any>{
 
-        try {
             var body={
                 name,
                 budget,
@@ -51,17 +41,10 @@ export class CampaignController {
             }
             return this.http.post<Campaign>("http://localhost:8090/api/campaigns", body);
 
-
-        } catch (error) {
-
-            console.error(error);
-            return;
-        }
     }
     // update campaign.
-    public async updateCampaign(id:number,name:string,budget:number, endingDate:string){
+    public updateCampaign(id:number,name:string,budget:number, endingDate:string) : Observable<any>{
 
-        try {
             var body={
                 name,
                 budget,
@@ -70,22 +53,11 @@ export class CampaignController {
             return this.http.put<Campaign>(`http://localhost:8090/api/campaigns/${id}`, body);
 
 
-        } catch (error) {
-
-            console.error(error);
-            return;
-        }
     }
     // delete campaign.
-    public async deleteCampaign(id:number){
+    public deleteCampaign(id:number) : Observable<any>{
 
-            try {
                 return this.http.delete<Campaign>(`http://localhost:8090/api/campaigns/${id}`);
 
-            } catch (error) {
-
-                console.error(error);
-                return;
-            }
         }
 }
