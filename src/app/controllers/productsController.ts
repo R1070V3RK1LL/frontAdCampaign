@@ -17,7 +17,7 @@ interface Product {
 
 @Injectable()
 export class ProductController {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   // list of products.
   public loadProducts(): Observable<any> {
     return this.http.get<Product>('http://localhost:8090/api/products');
@@ -67,8 +67,8 @@ export class ProductController {
   }
   // delete product.
   public deleteProduct(id: number): Observable<any> {
-      return this.http.delete<Product>(
-        `http://localhost:8090/api/products/${id}`
-      );
+    return this.http.delete<Product>(
+      `http://localhost:8090/api/products/${id}`
+    );
   }
 }

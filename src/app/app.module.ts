@@ -21,6 +21,8 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 import { CampaignController } from './controllers/campaignController';
 import { ProductController } from './controllers/productsController';
 import { AuthGuard } from './auth.guard';
+import { ProfileComponent } from './profile/profile.component';
+import { authInterceptorProviders } from './auth.interceptor';
 
 
 @NgModule({
@@ -37,6 +39,7 @@ import { AuthGuard } from './auth.guard';
     AddAdCampaignComponent,
     LoginPageComponent,
     AdminPageComponent,
+    ProfileComponent,
   ],
   imports: [
   BrowserModule,
@@ -46,7 +49,7 @@ import { AuthGuard } from './auth.guard';
     FormsModule,
     StoreModule.forRoot({product: ProductReducer} as ActionReducerMap<any,any> ),
   ],
-  providers: [CampaignController,ProductController,AuthGuard],
+  providers: [CampaignController,ProductController,AuthGuard, authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 

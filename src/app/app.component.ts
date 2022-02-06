@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from './services/auth.service';
+import { TokenStorageService } from './services/token-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +8,28 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public id: string|null;
-  constructor(private router: Router, private authService: AuthService) {this.id="";}
+  private roles: string[] = [];
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showModeratorBoard = false;
+  username?: string;
+  constructor(private router: Router, private tokenStorageService:TokenStorageService) {}
   ngOnInit() {
-    this.id = localStorage.getItem('token');
-    //console.log(this.id);
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+
+      this.username = user.username;
+    }
   }
   logout() {
-    console.log('logged out');
-    this.authService.logout();
+    this.tokenStorageService.signOut();
+    window.location.reload();
     this.router.navigate(['/signin']);
   }
 }

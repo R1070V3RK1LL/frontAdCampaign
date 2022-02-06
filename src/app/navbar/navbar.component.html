@@ -6,12 +6,11 @@
           <img src="./pngwing.com.ico" alt="home">
         </a>
       </li>
-      <li class="nav-item"><a routerLink="/store" class="nav-link" routerLinkActive="active">Product</a></li>
-      <!--<li class="nav-item"><a routerLink="/basket" class="nav-link" routerLinkActive="active">Basket</a></li>-->
-      <li class="nav-item"><a routerLink="/campaign" class="nav-link" routerLinkActive="active">Campaign</a></li>
-      <li class="nav-item"><a routerLink="/addProduct" class="nav-link" *ngIf="isLoggedIn$"  routerLinkActive="active" visibility="hidden">Add product</a></li>
-      <li class="nav-item"><a routerLink="/addAdCampaign" class="nav-link" routerLinkActive="active">Add ad campaign</a></li>
-      <li class="nav-item"><a routerLink="/modifyAdCampaign" class="nav-link" routerLinkActive="active">Modify ad campaign</a></li>
+      <li class="nav-item"><a routerLink="/store" class="nav-link" *ngIf="isLoggedIn$" routerLinkActive="active" >Product</a></li>
+      <li class="nav-item"><a routerLink="/campaign" class="nav-link" *ngIf="isLoggedIn$" routerLinkActive="active">Campaign</a></li>
+      <li class="nav-item"><a routerLink="/addProduct" class="nav-link"  *ngIf="isAdmin$"  routerLinkActive="active" visibility="hidden">Add product</a></li>
+      <li class="nav-item"><a routerLink="/addAdCampaign" class="nav-link" *ngIf="isAdmin$" routerLinkActive="active">Add ad campaign</a></li>
+      <li class="nav-item"><a routerLink="/modifyAdCampaign" class="nav-link" *ngIf="isAdmin$" routerLinkActive="active">Modify ad campaign</a></li>
     </ul>
   </header>
 </div>

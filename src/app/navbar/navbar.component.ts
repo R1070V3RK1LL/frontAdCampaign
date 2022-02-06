@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService } from '../services/auth.service';
+import { TokenStorageService } from '../services/token-storage.service';
+import { AuthGuard } from './../auth.guard';
 
 @Component({
   selector: 'app-navbar',
@@ -9,15 +10,17 @@ import { AuthService } from '../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-    public isLoggedIn$: Observable<boolean> =new Observable<boolean>();
+    public isLoggedIn$= new Observable<boolean>();
+    public isAdmin$=new Observable<boolean>();
 
-    constructor(private authService: AuthService) {}
+    constructor(private authGuard: AuthGuard,private tokenStorageService:TokenStorageService) {}
 
     ngOnInit() {
-      this.isLoggedIn$=new Observable<boolean>();
+      //this.isLoggedIn$=this.authGuard.isLoggedIn();
+      //this.isAdmin$=this.authGuard.isAdmin();
     }
 
     onLogout(){
-      this.authService.logout();
+      this.tokenStorageService.signOut();
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
+import {AuthService}from '../services/auth.service'
 
 @Component({
   selector: 'app-signup',
@@ -9,29 +10,37 @@ import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 
 export class SignupComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private authService:AuthService) { }
 
   private email: string = "";
-  private firstname: string = "";
-  private lastname: string = "";
   private password: string = "";
 
   signupForm = this.formBuilder.group({
-    firstname:this.firstname,
-    lastname:this.lastname,
     email: this.email,
     password:this.password,
   });
 
+    isSuccessful = false;
+    isSignUpFailed = false;
+    errorMessage = '';
 
+    ngOnInit(): void {
+    }
 
-  ngOnInit(): void {
+    onSubmit(): void {
+      var email=this.signupForm.get('email')?.value;
+      var password=this.signupForm.get('password')?.value;
+      this.authService.register( email, password).subscribe(
+        data => {
+          console.log(data);
+          this.isSuccessful = true;
+          this.isSignUpFailed = false;
+        },
+        err => {
+          this.errorMessage = err.error.message;
+          this.isSignUpFailed = true;
+        }
+      );
+    }
   }
 
-  submit() {
-    window.alert(
-      this.signupForm.get('email')?.value + '\n' +
-      "Signed up"
-    )
-  }
-}
