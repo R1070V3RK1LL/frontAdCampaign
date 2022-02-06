@@ -4,6 +4,7 @@ import {Product} from "../models/product.model";
 import { CartService } from '../services/cart.service';
 import{HttpClient} from '@angular/common/http';
 import { CampaignController } from '../controllers/campaignController';
+import { Campaign } from '../models/campaign.model';
 @Component({
   selector: 'app-campaign',
   templateUrl: './campaign.component.html',
@@ -14,7 +15,7 @@ export class CampaignComponent implements OnInit {
 
   productsInCampaign$: Observable<Product[]> | undefined;
   private campaignController:CampaignController;
-
+  campaigns : Campaign[] = []
 	// I initialize the app-component.
 	constructor(campaignController:CampaignController ) {
 
@@ -29,7 +30,14 @@ export class CampaignComponent implements OnInit {
 	}
 
   ngOnInit(): void {
-    this.campaignController.loadCampaigns();
+     this.campaignController.loadCampaigns().subscribe(
+      (response) => {    
+        this.campaigns = response;
+        console.log('response received', response)
+      },
+      (error) => {                             
+        console.error('Request failed with error', error)
+      });
   }
   //constructor(private cartService: CartService) { }
   //shippingPrices=this.cartService.getShippingPrices();
