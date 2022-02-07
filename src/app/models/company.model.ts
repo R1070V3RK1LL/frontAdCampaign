@@ -1,5 +1,5 @@
 
-export class Campaign {
+export class Company {
     name: string;
     id: number;
 

@@ -70,8 +70,5 @@ export class SigninComponent implements OnInit {
       );
     }
     }
-    reloadPage(): void {
-      window.location.reload();
-    }
   }
 

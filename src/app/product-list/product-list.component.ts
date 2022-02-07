@@ -5,6 +5,7 @@ import { Product } from '../models/product.model';
 import { productInBasket } from '../models/basket.model';
 import { AddToBasket } from '../store/actions/product.actions';
 import { ProductController } from '../controllers/productsController';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-product-list',
@@ -15,16 +16,13 @@ export class productListComponent implements OnInit {
   products: Product[] = [];
   private productController: ProductController;
 
-  // I initialize the app-component.
   constructor(
-    //private store: Store<appState>,
     productController: ProductController
   ) {
     this.productController = productController;
   }
 
   ngOnInit(): void {
-    //this.products = Product.getProducts;
     this.productController.loadProducts().subscribe(
       (response) => {
         this.products = response;
@@ -62,14 +60,4 @@ export class productListComponent implements OnInit {
         }
       );
   }
-  /*
-  addToCart(selectedProduct: Product) : void {
-    const newProductInBasket = {
-      product: selectedProduct
-    } as productInBasket;
-
-    this.store.dispatch(new AddToBasket(newProductInBasket))
-    console.log(newProductInBasket)
-  }
-  */
 }

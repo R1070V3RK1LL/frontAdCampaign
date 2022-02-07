@@ -22,6 +22,7 @@ import { ProductController } from './controllers/productsController';
 import { AuthGuard } from './auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { authInterceptorProviders } from './auth.interceptor';
+import { AddAdComponent } from './add-ad/add-ad.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { authInterceptorProviders } from './auth.interceptor';
     LoginPageComponent,
     AdminPageComponent,
     ProfileComponent,
+    AddAdComponent,
   ],
   imports: [
   BrowserModule,
