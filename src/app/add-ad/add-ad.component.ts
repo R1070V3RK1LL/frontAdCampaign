@@ -12,38 +12,27 @@ import { CampaignController } from './../controllers/campaignController';
 })
 export class AddAdComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private productController: ProductController, private campaignController:CampaignController) { }
-  private name: string = "";
-  private bid: number = 0.0;
-  private adcampaign: Campaign = new Campaign;
-  private product:Product=new Product;
-  private description:string="";
+  constructor(private formBuilder: FormBuilder, private campaignController:CampaignController, private productController:ProductController) { }
+   product:Product=new Product;
 
   public products: Product[]=[];
   public campaigns: Campaign[]=[];
+  private id:number=0;
 
   addAdForm = this.formBuilder.group({
-    name: this.name,
-    bid: this.bid,
-    adcampaign: this.adcampaign,
+    id:0,
     product:this.product,
-    description:this.description,
   });
 
 
 
+ 
   ngOnInit(): void {
+    console.log(JSON.parse(localStorage.getItem("currentProduct") as string))
+    this.product = JSON.parse(localStorage.getItem("currentProduct") as string)
+    this.loadCampaigns();
   }
-  loadProducts(){
-    this.productController.loadProducts().subscribe(
-      (response) => {
-        this.products=response;
-        console.log('response received', response)
-      },
-      (error) => {
-        console.error('Request failed with error', error)
-      })
-  }
+
   loadCampaigns(){
     this.campaignController.loadCampaigns().subscribe(
       (response) => {
@@ -56,12 +45,12 @@ export class AddAdComponent implements OnInit {
   }
   submit() {
 
-    var name = this.addAdForm.get('name')?.value;
-    var price = this.addAdForm.get('price')?.value;
-    var description = this.addAdForm.get('description')?.value;
-    var adcampaign = this.addAdForm.get('adcampaign')?.value;
-    var product = this.addAdForm.get('product')?.value;
-    this.productController.addProductToCampaign(name, price,description,adcampaign,product).subscribe(
+    let id = this.addAdForm.get('id')?.value;
+    let campaign = this.campaigns.find(obj => {
+      return obj.id === id
+    })
+    console.log('id', id)
+    this.productController.addProductCampaign(id, campaign as Campaign).subscribe(
       (response) => {
         console.log('response received', response)
       },

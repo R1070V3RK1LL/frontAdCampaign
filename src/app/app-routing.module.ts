@@ -9,6 +9,7 @@ import {SigninComponent } from './signin/signin.component';
 import {SignupComponent} from './signup/signup.component';
 import { AuthGuard } from './auth.guard';
 import { AdminGuard } from './admin.guard';
+import { AddAdComponent } from './add-ad/add-ad.component';
 
 const routes: Routes = [
   { path: 'store', component: productListComponent,canActivate : [AuthGuard] },
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'addProduct', component:AddProductComponent,canActivate : [AdminGuard]},
   {path: 'addAdCampaign', component:AddAdCampaignComponent,canActivate : [AdminGuard]},
   {path: 'modifyAdCampaign', component:ModifyAdComponent,canActivate : [AdminGuard]},
+  {path: 'add-product-compaign', component:AddAdComponent,canActivate : [AdminGuard]},
   {path: 'signin', component:SigninComponent},
   {path: 'signup', component:SignupComponent},
   { path: '',redirectTo:'/store',pathMatch: 'full'},

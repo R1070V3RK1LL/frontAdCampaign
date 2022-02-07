@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Product } from '../models/product.model';
 interface Campaign {
   id: number;
   name: string;
@@ -62,4 +63,6 @@ export class CampaignController {
       `http://localhost:8090/api/campaigns/${id}`
     );
   }
+
+
 }

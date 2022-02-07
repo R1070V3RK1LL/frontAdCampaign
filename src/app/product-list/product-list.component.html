@@ -1,31 +1,37 @@
-<h2>Products</h2>
-<div class="form-group">
-<div class="searchbar">
-    <input type="text" placeholder="Search a product" id="filter" #filter/>
-    <button class="btn btn-primary" label="search" (click)="getSearchedProducts(filter.value)">Search</button>
-</div>
-<div class="row"  >
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Image</th>
-      <th>Name</th>
-      <th>Brand</th>
-      <th>Price</th>
-      <th>Campaign</th>
+<div>
+  <h2>Products</h2>
+  <div class="form-group">
+    <div class="searchbar">
+      <input type="text" placeholder="Search a product" id="filter" #filter />
+      <button class="btn btn-primary" label="search" (click)="getSearchedProducts(filter.value)">Search</button>
+    </div>
+    <div class="row">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Price</th>
+            <th>Campaign</th>
+            <th *ngIf="isAdmin">Action</th>
 
-    </tr>
-    </thead>
+          </tr>
+        </thead>
 
-    <tbody  >
-    <tr *ngFor="let product of products">
-      <td><img alt="" src="{{product.image}}" style="width: 70px; height: 80px"></td>
-      <td>{{product.name}}</td>
-      <td>{{product.brand}}</td>
-      <td>{{product.price+"€" }}</td>
-      <td>{{product.campaign != null ? product.campaign["name"] : ""}}</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td><img alt="" src="{{product.image}}" style="width: 70px; height: 80px"></td>
+            <td>{{product.name}}</td>
+            <td>{{product.brand}}</td>
+            <td>{{product.price+"€" }}</td>
+            <td>{{product.campaign != null ? product.campaign["name"] : "no Ad here"}}</td>
+            <td *ngIf="isAdmin"><button class="btn btn-danger"
+                (click)="deleteProduct(product.id)">delete</button><button class="btn btn-success"
+                (click)="addToCampaign(product)">add to compaign</button></td>
 
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

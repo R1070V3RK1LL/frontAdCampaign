@@ -1,4 +1,6 @@
-
+.main-div {
+    margin: 10px;
+}
 .searchbar input {
     position:relative;
     margin-right:10px;
@@ -6,4 +8,8 @@
 .searchbar{
     align-items:center;
     margin-bottom:10px;
+}
+
+button{
+    margin-right: 5px;
 }

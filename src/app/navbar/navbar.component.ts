@@ -11,6 +11,8 @@ import { AuthGuard } from './../auth.guard';
 export class NavbarComponent implements OnInit {
 
     isLoggedIn : boolean = false;
+    isAdmin : boolean = false;
+
 
     constructor(private authGuard: AuthGuard,private tokenStorageService:TokenStorageService) {}
 
@@ -18,11 +20,13 @@ export class NavbarComponent implements OnInit {
       //this.isLoggedIn$=this.authGuard.isLoggedIn();
       //this.isAdmin$=this.authGuard.isAdmin();
       this.isLoggedIn = localStorage.getItem('isLoggedIn') == "true";
+      this.isAdmin = localStorage.getItem('isAdmin') == "true";
     }
 
     onLogout(){
       this.tokenStorageService.signOut();
       localStorage.setItem('isLoggedIn', "false");
+      localStorage.setItem('isAdmin', "false")
       window.location.reload();
   }
 }

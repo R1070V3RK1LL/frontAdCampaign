@@ -24,6 +24,7 @@ export class AddAdCampaignComponent implements OnInit {
 
 
   ngOnInit(): void {
+   
   }
   submit() {
     var name=this.addAdForm.get('name')?.value;

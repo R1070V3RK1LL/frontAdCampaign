@@ -1,35 +1,19 @@
+<h2>Ad product to campaign</h2>
 <form [formGroup]="addAdForm" (ngSubmit)="submit()">
 
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="name" formControlName="name" class="form-control" placeholder="Enter the name of the ad" id="firstname"
-      required>
-  </div>
-  <div class="form-group">
-    <label for="bid">Bid</label>
-    <input type="number" formControlName="bid" class="form-control" placeholder="Enter the bid of the ad" id="bid"
-      required>
+ <div class="form-group">
+    <label for="id">campaign</label>
+    <select class="custom-select" formControlName="id">
+      <option value="" selected>Choose the compaign</option>
+      <option *ngFor="let campaign of campaigns" [ngValue]="campaign.id">{{campaign.name}}</option>
+   </select>
   </div>
 
   <div class="form-group">
-    <label for="adcampaign">Select a campaign</label>
-    <select name="adcampaign" id="adcampaign" *ngFor="let campaign of campaigns">
-      <option value="campaign">Campaign</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label for="product">Select a product</label>
-    <select name="product" id="product" *ngFor="let product of products">
-      <option value="product">Product</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="description">Description</label>
-    <input type="description" formControlName="description" class="form-control"
-      placeholder="Enter the description of the ad" id="description" required>
+    <label for="product">Product</label>
+    <input class="form-control" [value]="product.name">
   </div>
   <button type="cancel" class="btn btn-primary">Cancel</button>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" >Submit</button>
 
 </form>

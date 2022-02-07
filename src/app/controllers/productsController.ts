@@ -96,4 +96,17 @@ export class ProductController {
         `http://localhost:8090/api/products/search`,filter
       );
     }
+
+       // add product to campaign.
+   public addProductCampaign(
+    id:number,
+    campaign: Campaign
+  ): Observable<any> {
+
+    console.log({campaign})
+    return this.http.post<Campaign>(
+      `http://localhost:8090/api/products/campaign/${id}/`,
+      campaign
+    );
+  }
 }
