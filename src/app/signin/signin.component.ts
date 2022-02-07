@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ILogin } from '../login';
 import { AuthService } from '../services/auth.service'
 import { TokenStorageService } from './../services/token-storage.service';
 
@@ -32,6 +31,7 @@ export class SigninComponent implements OnInit {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
+      this.router.navigate(['/store']);
     }
     this.signinForm=this.formBuilder.group({
       email: this.email,
@@ -43,7 +43,7 @@ export class SigninComponent implements OnInit {
 
   submit() {
     if (this.signinForm.invalid) {
-      this.message = "Please check your userid and password";
+      this.message = "Please check your email and password";
       return;
     }
     else {
@@ -60,6 +60,7 @@ export class SigninComponent implements OnInit {
           this.roles = this.tokenStorage.getUser().roles;
           localStorage.setItem('isLoggedIn','true');
           this.router.navigate([this.returnUrl]);
+          this.reloadPage()
         },
         err => {
           localStorage.setItem('isLoggedIn','false');

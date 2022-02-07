@@ -1,4 +1,5 @@
 import products from "../products.json";
+import { Campaign } from "./campaign.model";
 
 export class Product {
   id: number
@@ -6,11 +7,12 @@ export class Product {
   description: string
   price: number
   brand: string
-  img: string
+  image: string
   quantity: number
   nbClicks:number
   nbViews:number
   nbSales:number
+  campaign: Campaign
 
   constructor() {
     this.id = 0;
@@ -18,11 +20,12 @@ export class Product {
     this.description = ''
     this.price = 0
     this.brand = ''
-    this.img = ''
+    this.image = ''
     this.quantity=0
     this.nbSales=0
     this.nbClicks=0
     this.nbViews=0
+    this.campaign= new Campaign
   }
 
   static get getProducts(): Product[] {

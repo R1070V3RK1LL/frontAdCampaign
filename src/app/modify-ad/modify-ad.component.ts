@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder} from '@angular/forms';
 import { CampaignController } from '../controllers/campaignController';
+import { Campaign } from '../models/campaign.model';
 
 @Component({
   selector: 'app-modify-ad',
@@ -14,33 +15,38 @@ export class ModifyAdComponent implements OnInit {
   private name: string = "";
   private budget: number=0.0;
   private endingDate:string="";
+  campaigns : Campaign[] = []
 
   modifyAdForm = this.formBuilder.group({
-    id:this.id,
-    name: this.name,
-    budget:this.budget,
-    endingDate:this.endingDate,
+    id:0,
+    name: "",
+    budget:0,
+    endingDate:"",
   });
 
 
 
   ngOnInit(): void {
+    this.campaignController.loadCampaigns().subscribe(
+      (response) => {    
+        this.campaigns = response;
+        console.log('response received', response)
+      },
+      (error) => {                             
+        console.error('Request failed with error', error)
+      });
   }
   submit() {
-
-    var id=this.modifyAdForm.get('id')?.value;
-    var name=this.modifyAdForm.get('name')?.value;
-    var budget=this.modifyAdForm.get('budget')?.value;
-    var endingDate=this.modifyAdForm.get('endingDate')?.value;
-    if(!this.campaignController){
-      return null;
-    }
-    else{
-    window.alert(
-      name + '\n' +
-      "Campaign updated"
-    )
-    return this.campaignController.updateCampaign(id,name,budget,endingDate);
-    }
+    let id=this.modifyAdForm.get('id')?.value;
+    let name=this.modifyAdForm.get('name')?.value;
+    let budget=this.modifyAdForm.get('budget')?.value;
+    let endingDate=this.modifyAdForm.get('endingDate')?.value + " 00:00";
+    console.log({id})
+    return this.campaignController.updateCampaign(id,name,budget,endingDate).subscribe(
+      (response) => {
+        console.log({response})
+        this.modifyAdForm.reset()
+      }
+    );
   }
 }

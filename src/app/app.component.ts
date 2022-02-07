@@ -15,7 +15,8 @@ export class AppComponent {
   username?: string;
   constructor(private router: Router, private tokenStorageService:TokenStorageService) {}
   ngOnInit() {
-    this.isLoggedIn = !!this.tokenStorageService.getToken() && localStorage.getItem('isLoggedIn') == "true";
+    console.log({})
+    this.isLoggedIn = localStorage.getItem("isLoggedIn") == "true";
 
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
@@ -24,10 +25,10 @@ export class AppComponent {
     
     }
   }
-  
+
   logout() {
     this.tokenStorageService.signOut();
-    window.location.reload();
+    //window.location.reload();
     this.router.navigate(['/signin']);
   }
 

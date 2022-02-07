@@ -2,11 +2,15 @@
         <a routerLink="/" class="nav-link" aria-current="page" >
           <img src="../assets/logo.jpeg" alt="home">
         </a>
-      <a routerLink="/store" class="nav-link" *ngIf="isLoggedIn$" routerLinkActive="active" >Product</a>
-      <a routerLink="/campaign" class="nav-link" *ngIf="isLoggedIn$" routerLinkActive="active">Campaign</a>
-      <a routerLink="/addProduct" class="nav-link"  *ngIf="isAdmin$"  routerLinkActive="active" >Add product</a>
-      <a routerLink="/addAdCampaign" class="nav-link" *ngIf="isAdmin$" routerLinkActive="active">Add ad campaign</a>
-      <a routerLink="/modifyAdCampaign" class="nav-link" *ngIf="isAdmin$" routerLinkActive="active">Modify ad campaign</a>
-      <a href routerLink="/signin" class="nav-link" (click)="onLogout()">LogOut</a>
+      </li>
+      <li class="nav-item"><a routerLink="/store" class="nav-link" *ngIf="isLoggedIn" routerLinkActive="active" >Product</a></li>
+      <li class="nav-item"><a routerLink="/campaign" class="nav-link" *ngIf="isLoggedIn" routerLinkActive="active">Campaign</a></li>
+      <li class="nav-item"><a routerLink="/addProduct" class="nav-link"  *ngIf="isLoggedIn"  routerLinkActive="active" visibility="hidden">Add product</a></li>
+      <li class="nav-item"><a routerLink="/addAdCampaign" class="nav-link" *ngIf="isLoggedIn" routerLinkActive="active">Add ad campaign</a></li>
+      <li class="nav-item"><a routerLink="/modifyAdCampaign" class="nav-link" *ngIf="isLoggedIn" routerLinkActive="active">Modify ad campaign</a></li>
+      <li class="nav-item">
+        <a href routerLink="/signin" class="nav-link"  *ngIf="isLoggedIn" (click)="onLogout()">LogOut</a>
+      </li>    </ul>
+  </header>
 </div>
 
