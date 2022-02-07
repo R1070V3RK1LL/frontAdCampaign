@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActionReducerMap, StoreModule } from '@ngrx/store';
-import { ProductReducer } from './store/reducers/product.reducer';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -44,10 +43,6 @@ import { AddAdComponent } from './add-ad/add-ad.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    StoreModule.forRoot({ product: ProductReducer } as ActionReducerMap<
-      any,
-      any
-    >),
   ],
   providers: [
     CampaignController,

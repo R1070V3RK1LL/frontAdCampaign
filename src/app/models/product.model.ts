@@ -1,4 +1,3 @@
-import products from "../products.json";
 import { Campaign } from "./campaign.model";
 
 export class Product {
@@ -28,8 +27,4 @@ export class Product {
     this.campaign= new Campaign
   }
 
-  static get getProducts(): Product[] {
-    return [...products
-    ] as Product[];
-}
 }

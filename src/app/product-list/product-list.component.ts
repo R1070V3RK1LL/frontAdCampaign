@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { appState } from '../store/app.state';
-import { Store } from '@ngrx/store';
 import { Product } from '../models/product.model';
-import { productInBasket } from '../models/basket.model';
-import { AddToBasket } from '../store/actions/product.actions';
 import { ProductController } from '../controllers/productsController';
-import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
