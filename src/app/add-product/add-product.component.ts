@@ -4,6 +4,7 @@ import { Campaign } from '../models/campaign.model';
 import { Product } from '../models/product.model';
 import { ProductController } from '../controllers/productsController';
 import { HttpClient } from '@angular/common/http';
+import { CampaignController } from '../controllers/campaignController';
 
 @Component({
   selector: 'app-add-product',
@@ -12,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddProductComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private productController: ProductController) { }
+  constructor(private formBuilder: FormBuilder, private productController: ProductController, private campaignController:CampaignController) { }
   private name: string = "";
   private price: number = 0.0;
   private image: string = "";
@@ -20,6 +21,7 @@ export class AddProductComponent implements OnInit {
   private quantity: number = 0;
   private product: Product = new Product;
   private adcampaign: Campaign = new Campaign;
+  campaigns : Campaign[] = []
 
   addProductForm = this.formBuilder.group({
     name: this.name,
@@ -34,6 +36,14 @@ export class AddProductComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.campaignController.loadCampaigns().subscribe(
+      (response) => {    
+        this.campaigns = response;
+        console.log('response received', response)
+      },
+      (error) => {                             
+        console.error('Request failed with error', error)
+      });
   }
 
   submit() {

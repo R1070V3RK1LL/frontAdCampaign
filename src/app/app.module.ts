@@ -8,7 +8,6 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { productListComponent } from './product-list/product-list.component';
-import { BasketComponent } from './basket/basket.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CampaignComponent } from './campaign/campaign.component';
 import { SignupComponent } from './signup/signup.component';
@@ -29,7 +28,6 @@ import { authInterceptorProviders } from './auth.interceptor';
   declarations: [
     AppComponent,
     productListComponent,
-    BasketComponent,
     NavbarComponent,
     CampaignComponent,
     SignupComponent,

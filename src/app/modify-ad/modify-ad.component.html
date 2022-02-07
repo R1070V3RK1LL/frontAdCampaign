@@ -1,9 +1,11 @@
 <form [formGroup]="modifyAdForm" (ngSubmit)="submit()">
 
   <div class="form-group">
-    <label for="id">Id</label>
-    <input type="number" formControlName="id" class="form-control" placeholder="Select the number of the campaign you want to update" id="id"
-      required>
+    <label for="id">campaign</label>
+    <select class="custom-select" formControlName="id">
+      <option value="" disabled>Choose the compaign</option>
+      <option *ngFor="let campaign of campaigns" [ngValue]="campaign.id">{{campaign.name}}</option>
+   </select>
   </div>
   <div class="form-group">
     <label for="name">Name</label>

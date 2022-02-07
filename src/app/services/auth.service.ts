@@ -20,11 +20,12 @@ const httpOptions = {
     }, httpOptions);
   }
 
-  register( email: string, password: string): Observable<any> {
+  register( email: string, password: string, role: String[]): Observable<any> {
     return this.http.post(AUTH_API + 'signup', {
       username:email,
       email,
-      password
+      password,
+      role,
     }, httpOptions);
   }
 }

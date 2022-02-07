@@ -71,4 +71,10 @@ export class ProductController {
       `http://localhost:8090/api/products/${id}`
     );
   }
+    // search for products.
+    public getSearchProducts(filter: string): Observable<any> {
+      return this.http.post<Product>(
+        `http://localhost:8090/api/products/search`,filter
+      );
+    }
 }

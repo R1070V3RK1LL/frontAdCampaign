@@ -10,18 +10,19 @@ import { AuthGuard } from './../auth.guard';
 })
 export class NavbarComponent implements OnInit {
 
-    public isLoggedIn$= new Observable<boolean>();
-    public isAdmin$=new Observable<boolean>();
+    isLoggedIn : boolean = false;
 
     constructor(private authGuard: AuthGuard,private tokenStorageService:TokenStorageService) {}
 
     ngOnInit() {
       //this.isLoggedIn$=this.authGuard.isLoggedIn();
       //this.isAdmin$=this.authGuard.isAdmin();
+      this.isLoggedIn = localStorage.getItem('isLoggedIn') == "true";
     }
 
     onLogout(){
       this.tokenStorageService.signOut();
       localStorage.setItem('isLoggedIn', "false");
+      window.location.reload();
   }
 }

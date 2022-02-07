@@ -1,7 +1,7 @@
 <h2>Products</h2>
 <div class="searchbar">
-    <input type="text" placeholder="Search a product" />
-    <button class="btn btn-primary" label="search">Search</button>
+    <input type="text" placeholder="Search a product" id="filter" #filter/>
+    <button class="btn btn-primary" label="search" (click)="getSearchedProducts(filter.value)">Search</button>
 </div>
 <div class="row"  >
   <table class="table">
@@ -18,11 +18,11 @@
 
     <tbody  >
     <tr *ngFor="let product of products">
-      <td><img alt="" src="{{product.img}}" style="width: 70px; height: 80px"></td>
+      <td><img alt="" src="{{product.image}}" style="width: 70px; height: 80px"></td>
       <td>{{product.name}}</td>
       <td>{{product.brand}}</td>
       <td>{{product.price+"€" }}</td>
-      <td><button class="btn btn-success" (click)="addToCampaign(product)">Add to campaign</button></td>
+      <td>{{product.campaign != null ? product.campaign["name"] : ""}}</td>
     </tr>
     </tbody>
   </table>

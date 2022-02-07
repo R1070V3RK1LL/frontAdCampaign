@@ -1,6 +1,7 @@
 import {Product} from "./product.model";
 
 export class Campaign {
+  id:number;
   name: string;
   description: string;
   budget: number;
@@ -9,6 +10,7 @@ export class Campaign {
   products:Product[];
 
   constructor() {
+    this.id = 0;
     this.name = '';
     this.description = '';
     this.budget=0.0;
